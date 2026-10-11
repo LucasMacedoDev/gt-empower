@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: gtempower
+      POSTGRES_PASSWORD: change-this-password
+      POSTGRES_DB: gtempower
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gtempower"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://gtempower:change-this-password@postgres:5432/gtempower
+      STORAGE_DIR: /data
+      FACE_MODEL: Facenet512
+      FACE_DETECTOR: retinaface
+      FACE_COSINE_THRESHOLD: '0.30'
+      CORS_ORIGINS: http://localhost:5173
+      TF_USE_LEGACY_KERAS: '1'
+    ports:
+      - '8000:8000'
+    volumes:
+      - app_data:/data
+      - deepface_models:/root/.deepface
+    depends_on:
+      postgres:
+        condition: service_healthy
+  frontend:
+    build: ./frontend
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    ports:
+      - '5173:5173'
+    depends_on:
+      - backend
+volumes:
+  postgres_data:
+  app_data:
+  deepface_models:
