@@ -4,11 +4,11 @@ Aplicação web **real**, com React 19 + TypeScript + Tailwind CSS, Python/FastA
 
 Conferir os arquivos do projeto
 No terminal integrado do VS Code, execute:
-ls -la
+```ls -la```
 
 
 Depois:
-docker compose config --services
+```docker compose config --services```
 
 
 O segundo comando deve mostrar os serviços definidos na configuração do Docker Compose, como frontend, backend e o banco de dados.
