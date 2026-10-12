@@ -2,6 +2,24 @@
 
 Aplicação web **real**, com React 19 + TypeScript + Tailwind CSS, Python/FastAPI + **DeepFace**, e PostgreSQL. Nenhum dado de exemplo é gerado pelo sistema. O projeto não inclui Spring Boot: o próprio Python expõe a API para evitar uma segunda camada desnecessária entre o DeepFace e o banco.
 
+Conferir os arquivos do projeto
+No terminal integrado do VS Code, execute:
+ls -la
+
+
+Depois:
+docker compose config --services
+
+
+O segundo comando deve mostrar os serviços definidos na configuração do Docker Compose, como frontend, backend e o banco de dados.
+
+Iniciar o GT Empower
+Se o comando anterior funcionar e mostrar os serviços, execute:
+sudo docker compose up --build -d
+
+
+Esse comando constrói as imagens, se necessário, e inicia os serviços em segundo plano. Ele não solicita a remoção dos volumes do banco de dados
+
 ## Iniciar com Docker (recomendado)
 
 Requisitos: Docker Desktop com Docker Compose, conexão à internet na primeira execução e memória livre suficiente para TensorFlow/RetinaFace.
