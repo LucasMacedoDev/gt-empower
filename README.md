@@ -16,7 +16,9 @@ O segundo comando deve mostrar os serviços definidos na configuração do Docke
 Iniciar o GT Empower
 Se o comando anterior funcionar e mostrar os serviços, execute:
 
-''' sudo docker compose up --build -d '''
+´´´
+sudo docker compose up --build -d 
+´´´
 
 
 Esse comando constrói as imagens, se necessário, e inicia os serviços em segundo plano. Ele não solicita a remoção dos volumes do banco de dados
